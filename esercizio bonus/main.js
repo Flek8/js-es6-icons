@@ -149,25 +149,25 @@ selector.addEventListener('change', function() {
 
 
 
-
+// funzione per creare la lista di options
 function optionElements() {
     let selectOptions = '<option value="all">All</option>';
 
-let select = [];
-icons.forEach(elemento => {
+    let select = [];  //inizializzo un array vuoto e per ogni elemento se la proprietàtype non è presente la inserisco
+    icons.forEach(elemento => {
 
-    if (!select.includes(elemento.type)) {
-        select.push(elemento.type)
+        if (!select.includes(elemento.type)) {
+            select.push(elemento.type)
+        }
+    });
+        //per ogni elemento dell'array select inserisco una option con lo stesso id
+    for (let i = 0; i < select.length; i++) {
+        
+        selectOptions += `<option value="${select[i]}">${select[i]}</option>`
+        
     }
-});
 
-for (let i = 0; i < select.length; i++) {
-    
-    selectOptions += `<option value="${select[i]}">${select[i]}</option>`
-    
-}
-
-selectType.innerHTML = selectOptions;
+    selectType.innerHTML = selectOptions;
 }
 
 function drawIcons(container, icons) {
@@ -186,10 +186,13 @@ function drawIcons(container, icons) {
 
 }
 
+
 function coloreCasuale() {
 
     let numeroCodice;
     let codiceColore = '#';
+
+    //ciclo da cui ottengo 6 numeri e in cui sostituisco i numeri dal 10 al 15 con le lettere dalla A alla F
     for (let i = 0; i < 6; i++) {
         let numero = numeroCasuale(1, 15);
         
@@ -208,7 +211,7 @@ function coloreCasuale() {
         } else if (numero == 15) {
             numeroCodice = 'f'
         }
-        
+            //concateno i numeri7lettere ottenuti
         codiceColore += numeroCodice;
     }
     return codiceColore
